@@ -10,7 +10,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 app = FastAPI()
 
-# ✅ CORS CONFIG
+#  CORS CONFIG
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000"
@@ -24,24 +24,24 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ Upload folder
+#  Upload folder
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-# ✅ Tesseract path (Windows)
+#  Tesseract path (Windows)
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
-# ✅ Thread pool for parallel processing
+#  Thread pool for parallel processing
 executor = ThreadPoolExecutor(max_workers=5)
 
 
-# ✅ Health check
+#  Health check
 @app.get("/")
 def home():
     return {"message": "Backend is working"}
 
 
-# 🔥 OCR FUNCTION
+#  OCR FUNCTION
 def extract_text(file_path):
     img = cv2.imread(file_path)
     if img is None:
@@ -74,14 +74,14 @@ def extract_text(file_path):
     return text
 
 
-# 🧠 CLEAN NAME
+#  CLEAN NAME
 def clean_name(name):
     if name:
         return name.replace("Sal", "Sai")
     return name
 
 
-# 🧠 NAME
+#  NAME
 def extract_name(text):
     lines = [l.strip() for l in text.split("\n") if l.strip()]
 
@@ -104,7 +104,7 @@ def extract_name(text):
     return None
 
 
-# 🧠 DOB
+#  DOB
 def extract_dob(text):
     patterns = [
         r"\b\d{2}/\d{2}/\d{4}\b",
@@ -120,7 +120,7 @@ def extract_dob(text):
     return None
 
 
-# 🧠 AADHAAR NUMBER
+#  AADHAAR NUMBER
 def extract_aadhaar(text):
     matches = re.findall(r"\b\d{4}\s\d{4}\s\d{4}\b", text)
 
@@ -132,7 +132,7 @@ def extract_aadhaar(text):
     return None
 
 
-# 🧠 ADDRESS
+#  ADDRESS
 def extract_address(text):
     lines = [l.strip() for l in text.split("\n") if l.strip()]
 
@@ -152,7 +152,7 @@ def extract_address(text):
     return " ".join(address) if address else None
 
 
-# 🧠 STRUCTURED DATA
+#  STRUCTURED DATA
 def process_file(file_path):
     text = extract_text(file_path)
 
@@ -171,13 +171,13 @@ def process_file(file_path):
     }
 
 
-# 🚀 MULTI-FILE API
+#  MULTI-FILE API
 @app.post("/upload-multiple")
 async def upload_multiple(files: List[UploadFile] = File(...)):
     try:
         file_paths = []
 
-        # ✅ Save files
+        #  Save files
         for file in files:
             path = os.path.join(UPLOAD_DIR, file.filename)
 
@@ -186,7 +186,7 @@ async def upload_multiple(files: List[UploadFile] = File(...)):
 
             file_paths.append(path)
 
-        # 🔥 Parallel processing
+        #  Parallel processing
         results = list(executor.map(process_file, file_paths))
 
         return {
