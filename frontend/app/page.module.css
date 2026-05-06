@@ -1,0 +1,156 @@
+.dashboardContainer {
+  min-height: 100vh;
+  background-color: #0b0f19;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  padding: 16px 24px;
+  border-bottom: 1px solid #1f2937;
+}
+
+/* Stats */
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+  .statsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.statCard {
+  background: #111827;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #1f2937;
+}
+
+.statTitle {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.statValue {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.textCyan {
+  color: #22d3ee;
+}
+
+.textGreen {
+  color: #4ade80;
+}
+
+.textYellow {
+  color: #facc15;
+}
+
+.textGray {
+  color: #9ca3af;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid #1f2937;
+  margin-bottom: 24px;
+}
+
+.tabButton {
+  padding-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.tabButton:hover {
+  color: white;
+}
+
+.tabActive {
+  color: #22d3ee;
+  border-bottom: 2px solid #22d3ee;
+}
+
+/* Upload */
+.uploadBox {
+  border: 2px dashed #374151;
+  padding: 40px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.uploadBtn {
+  margin-top: 16px;
+  padding: 10px 24px;
+  background-color: #06b6d4;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.uploadBtn:hover {
+  background-color: #0891b2;
+}
+
+/* File List */
+.fileItem {
+  background: #111827;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #1f2937;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Results */
+.resultCard {
+  background: #111827;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #1f2937;
+}
+
+.resultTitle {
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #22d3ee;
+}
+
+.resultGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .resultGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.fullWidth {
+  grid-column: span 2;
+}
+
+.rawText {
+  font-size: 12px;
+  margin-top: 10px;
+  color: #d1d5db;
+  white-space: pre-wrap;
+}
